@@ -24,8 +24,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonPress(_ sender: Any) {
-//        let controller = self.storyboard?.instantiateViewController(withIdentifier: "LocationsTabBarController") as! UITabBarController
-//        present(controller, animated: true, completion: nil)
+
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             print("Either email or password fields are missing.")
             showAlert(messageText: "Either email or password fields are missing.")
@@ -33,9 +32,16 @@ class LoginViewController: UIViewController {
         }
         
         if checkForValidEmailAndPassword(email: email, password: password) {
-        
             UdacityAPIClient.sharedInstance().authenticateUdacityUser(email, password) { (success, errMsg) in
-//                print("success:\(success), acountId: \(UdacityAPIClient.sharedInstance().sessionID)")
+                
+                //                print("success:\(success), sessionId: \(UdacityAPIClient.sharedInstance().sessionID), accountId:\(UdacityAPIClient.sharedInstance().accountID)")
+                performUIUpdatesOnMain {
+                    let controller = self.storyboard?.instantiateViewController(withIdentifier: "LocationsTabBarController") as! UIViewController
+                    self.present(controller, animated: true, completion: nil)
+                }
+               
+                
+
             }
             
             

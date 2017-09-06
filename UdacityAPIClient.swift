@@ -12,6 +12,7 @@ class UdacityAPIClient: NSObject {
     
     var accountID:String? = nil
     var sessionID:String? = nil
+    
     var firstName:String? = nil
     var lastName:String? = nil
     
@@ -59,6 +60,8 @@ class UdacityAPIClient: NSObject {
     }
     
     func taskForGETPublicUserData(_ accountID:String, completionHandlerForGETPublicUserData: (_ data: Data?, _ error: NSError?)->()) {
+        
+        
         
     }
     

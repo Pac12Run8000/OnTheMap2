@@ -10,7 +10,7 @@ import UIKit
 
 extension UdacityAPIClient {
 
- func authenticateUdacityUser(_ email:String, _ password:String, completionHandlerForAuthenticateUser: @escaping (_ success:Bool, _ error:String)->()) {
+    func authenticateUdacityUser(_ email:String, _ password:String, completionHandlerForAuthenticateUser: @escaping (_ success:Bool, _ error:String)->()) {
     
         
         taskForPOSTSession(email, password) { (data, error) in
@@ -54,35 +54,10 @@ extension UdacityAPIClient {
             completionHandlerForAuthenticateUser(true, "")
             
             
-            print("sessionId:\(sessionId), keyId:\(keyId)")
-//
-//            guard let sessionDictionary = parsedResult["session"] as? [String:AnyObject] else {
-//                print("Can't find account! No Session Exists!")
-//                completionHandlerForAuthenticateUser(false, "Can't find account! No Session Exists!")
-//                return
-//            }
-//            
-//            guard let sessionId = sessionDictionary["id"] as? String else {
-//                print("No account ID.")
-//                completionHandlerForAuthenticateUser(false, "No account ID.")
-//                return
-//            }
-//            
-//            guard let accountDictionary = parsedResult["account"] as? [String:AnyObject] else {
-//                print("Can't find account!!")
-//                completionHandlerForAuthenticateUser(false, "Can't find account!!")
-//                return
-//            }
-//            guard let keyId = accountDictionary["key"] as? String else {
-//                print("No account ID.")
-//                completionHandlerForAuthenticateUser(false, "No account ID.")
-//                return
-//            }
-//            
-//            UdacityAPIClient.sharedInstance().accountID = keyId
-//            UdacityAPIClient.sharedInstance().sessionID = sessionId
-//        
+//            print("sessionId:\(sessionId), keyId:\(keyId)")
         }
     }
+    
+    
 
 }

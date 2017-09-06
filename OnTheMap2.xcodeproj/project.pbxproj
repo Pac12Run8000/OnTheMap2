@@ -15,6 +15,7 @@
 		096C91011F601CFC0035DD17 /* UdacityAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096C91001F601CFC0035DD17 /* UdacityAPIClient.swift */; };
 		096C91031F601E7F0035DD17 /* UdacityAPIConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096C91021F601E7F0035DD17 /* UdacityAPIConvenience.swift */; };
 		096C91051F6020000035DD17 /* UdacityAPIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096C91041F6020000035DD17 /* UdacityAPIConstants.swift */; };
+		096C91091F60839A0035DD17 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096C91081F60839A0035DD17 /* GCDBlackBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		096C91001F601CFC0035DD17 /* UdacityAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityAPIClient.swift; sourceTree = "<group>"; };
 		096C91021F601E7F0035DD17 /* UdacityAPIConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityAPIConvenience.swift; sourceTree = "<group>"; };
 		096C91041F6020000035DD17 /* UdacityAPIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityAPIConstants.swift; sourceTree = "<group>"; };
+		096C91081F60839A0035DD17 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				096C90F31F6009F50035DD17 /* Assets.xcassets */,
 				096C90F51F6009F50035DD17 /* LaunchScreen.storyboard */,
 				096C90F81F6009F50035DD17 /* Info.plist */,
+				096C91081F60839A0035DD17 /* GCDBlackBox.swift */,
 			);
 			path = OnTheMap2;
 			sourceTree = "<group>";
@@ -166,6 +169,7 @@
 				096C91051F6020000035DD17 /* UdacityAPIConstants.swift in Sources */,
 				096C90EF1F6009F50035DD17 /* LoginViewController.swift in Sources */,
 				096C90ED1F6009F50035DD17 /* AppDelegate.swift in Sources */,
+				096C91091F60839A0035DD17 /* GCDBlackBox.swift in Sources */,
 				096C91011F601CFC0035DD17 /* UdacityAPIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
