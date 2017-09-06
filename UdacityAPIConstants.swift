@@ -42,6 +42,16 @@ extension UdacityAPIClient {
         return "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}"
     }
     
+    func getUdacityComponentsPublicUserData() -> URLComponents {
+        var component = URLComponents()
+        component.scheme = UdacityAPIClient.Constants.OTM.Udacity.ApiScheme
+        component.host = UdacityAPIClient.Constants.OTM.Udacity.ApiHost
+        component.path = UdacityAPIClient.Constants.OTM.Udacity.ApiPathGetPublicUsers
+        
+        return component
+    }
+    
+    
     func getUdacityComponentsForAuth() -> URLComponents {
         var component = URLComponents()
         component.scheme = UdacityAPIClient.Constants.OTM.Udacity.ApiScheme

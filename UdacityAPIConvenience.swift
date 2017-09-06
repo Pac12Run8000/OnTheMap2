@@ -53,11 +53,53 @@ extension UdacityAPIClient {
             
             completionHandlerForAuthenticateUser(true, "")
             
-            
-//            print("sessionId:\(sessionId), keyId:\(keyId)")
         }
     }
     
+    func getPublicUserData(completionForGettingPublicUser: @escaping (_ success: Bool?, _ error:String?)->()) {
+        
+        guard let accountID = UdacityAPIClient.sharedInstance().accountID else {
+            return
+        }
+        
+        taskForGETPublicUserData(accountID) { (data, err) in
+            
+            let parsedResult:[String:AnyObject]!
+            
+            do {
+                parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
+            } catch {
+                print("Couldn't properly parse JSON.")
+                completionForGettingPublicUser(false, "Couldn't properly parse JSON.")
+                return
+            }
+            
+            guard let userDictionary = parsedResult["user"] as? [String:AnyObject] else {
+                print("There is no user dictionary.")
+                completionForGettingPublicUser(false, "There is no user dictionary.")
+                return
+            }
+            
+            guard let firstName = userDictionary["first_name"] as? String else {
+                print("Could not retrieve first name.")
+                completionForGettingPublicUser(false, "Could not retrieve first name.")
+                return
+            }
+            
+            guard let lastName = userDictionary["last_name"] as? String else {
+                print("Could not retrieve last name.")
+                completionForGettingPublicUser(false, "Could not retrieve last name.")
+                return
+            }
+            
+//            print("parsed result:\(parsedResult)")
+            
+            self.firstName = firstName
+            self.lastName = lastName
+            completionForGettingPublicUser(true, nil)
+            
+        }
     
+    }
 
 }

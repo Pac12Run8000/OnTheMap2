@@ -34,21 +34,25 @@ class LoginViewController: UIViewController {
         if checkForValidEmailAndPassword(email: email, password: password) {
             UdacityAPIClient.sharedInstance().authenticateUdacityUser(email, password) { (success, errMsg) in
                 
-                //                print("success:\(success), sessionId: \(UdacityAPIClient.sharedInstance().sessionID), accountId:\(UdacityAPIClient.sharedInstance().accountID)")
-                performUIUpdatesOnMain {
-                    let controller = self.storyboard?.instantiateViewController(withIdentifier: "LocationsTabBarController") as! UIViewController
-                    self.present(controller, animated: true, completion: nil)
-                }
-               
-                
+                    UdacityAPIClient.sharedInstance().getPublicUserData(completionForGettingPublicUser: { (success, errMsg) in
+                    
+                        print("Name: \(String(describing: UdacityAPIClient.sharedInstance().firstName)) \(String(describing: UdacityAPIClient.sharedInstance().lastName))")
+                    
+                        performUIUpdatesOnMain {
+                            let controller = self.storyboard?.instantiateViewController(withIdentifier: "LocationsTabBarController")
+                            self.present(controller!, animated: true, completion: nil)
+                        }
+                    
+                    })
 
             }
-            
             
         }
         
         
     }
+    
+    //                print("success:\(success), sessionId: \(UdacityAPIClient.sharedInstance().sessionID), accountId:\(UdacityAPIClient.sharedInstance().accountID)")
     
     func checkForValidEmailAndPassword(email:String, password:String) -> Bool {
         if (email.isEmpty || email == "" || !isEmailAddressValid(emailValue: email)) {

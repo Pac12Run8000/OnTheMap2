@@ -26,8 +26,6 @@ class UdacityAPIClient: NSObject {
     
     func taskForPOSTSession(_ email:String, _ password:String, completionHandlerForTaskForPOSTSession: @escaping (_ data: Data?, _ error: NSError?)->()) {
         
-
-//        print("email:\(email), password:\(password)")
         
         let request = NSMutableURLRequest(url: URL(string: String(describing: getUdacityComponentsForAuth()))!)
         request.httpMethod = "POST"
@@ -59,8 +57,35 @@ class UdacityAPIClient: NSObject {
         
     }
     
-    func taskForGETPublicUserData(_ accountID:String, completionHandlerForGETPublicUserData: (_ data: Data?, _ error: NSError?)->()) {
+    func taskForGETPublicUserData(_ accountID:String?, completionHandlerForGETPublicUserData: @escaping (_ data: Data?, _ error: NSError?)->()) {
         
+
+        
+        let url = URL(string: String(describing: getUdacityComponentsPublicUserData()) + accountID!)!
+        let request = NSMutableURLRequest(url: url)
+        session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+            if error != nil { // Handle error...
+                print("An error occured during request.")
+                completionHandlerForGETPublicUserData(nil, error! as NSError)
+                return
+            }
+            
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+                print("Your request returned a status code other than 2xx!")
+                completionHandlerForGETPublicUserData(nil, error! as NSError)
+                return
+            }
+            
+            let range = Range(5..<data!.count)
+            let newData = data?.subdata(in: range)
+            
+//            print("newData:\(String(describing: newData))")
+            
+            completionHandlerForGETPublicUserData(newData, nil)
+        }
+        task.resume()
+            
         
         
     }
