@@ -34,10 +34,13 @@ extension UdacityAPIClient {
         
     }
 
-
 }
 
 extension UdacityAPIClient {
+    
+    func OTMUrlFromLoginFields(username:String,password:String) -> String {
+        return "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}"
+    }
     
     func getUdacityComponentsForAuth() -> URLComponents {
         var component = URLComponents()

@@ -23,24 +23,35 @@ class UdacityAPIClient: NSObject {
     
     
     
-    func taskForPOSTSession(_ email:String, _ password:String, completionHandlerForTaskForPOSTSession: (_ data: Data?, _ error: NSError?)->()) {
+    func taskForPOSTSession(_ email:String, _ password:String, completionHandlerForTaskForPOSTSession: @escaping (_ data: Data?, _ error: NSError?)->()) {
         
-        print("login url: \(getUdacityComponentsForAuth())")
+
+//        print("email:\(email), password:\(password)")
         
+        let request = NSMutableURLRequest(url: URL(string: String(describing: getUdacityComponentsForAuth()))!)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = UdacityAPIClient.sharedInstance().OTMUrlFromLoginFields(username: email, password: password).data(using: String.Encoding.utf8)
+        session = URLSession.shared
         
-        
-//        let request = NSMutableURLRequest(url: URL(string: UdacityClient.Constants.UdacityAuthUrl.AuthUrl)!)
-//        request.httpMethod = "POST"
-        
-//        request.addValue(UdacityClient.Constants.UDacityAPIKeys.Application_JSON, forHTTPHeaderField: UdacityClient.Constants.UDacityAPIValues.Application_JSON_Accept)
-//        request.addValue(UdacityClient.Constants.UDacityAPIKeys.Application_JSON, forHTTPHeaderField: UdacityClient.Constants.UDacityAPIValues.Application_JSON_ContentType)
-//        request.httpBody = appDelegate.OTMUrlFromLoginFields(username: username, password: password).data(using: String.Encoding.utf8)
-//        
-//        let session = URLSession.shared
-//        let task = session.dataTask(with: request as URLRequest) { data, response, error in
-//            
-//        }
-        
+        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+            if (error != nil) {
+                completionHandlerForTaskForPOSTSession(nil, error! as NSError)
+                print("An error occured during request.")
+                return
+            }
+            
+                let range = Range(5..<data!.count)
+                let newData = data?.subdata(in: range) /* subset response data! */
+                
+                
+                print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
+                completionHandlerForTaskForPOSTSession(newData, nil)
+                
+            
+        }
+        task.resume()
     }
     
     func taskForDELETESession(completionHanderForTaskForDELETESesion: (_ data: Data?, _ error: NSError?)->()) {

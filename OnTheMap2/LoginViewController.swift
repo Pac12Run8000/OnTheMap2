@@ -28,14 +28,16 @@ class LoginViewController: UIViewController {
 //        present(controller, animated: true, completion: nil)
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             print("Either email or password fields are missing.")
+            showAlert(messageText: "Either email or password fields are missing.")
             return
         }
         
         if checkForValidEmailAndPassword(email: email, password: password) {
         
-            UdacityAPIClient.sharedInstance().authenticateUdacityUser("sosagrover1987@gmail.com", "getMyGraphicsNow67") { (success, errMsg) in
-            
+            UdacityAPIClient.sharedInstance().authenticateUdacityUser(email, password) { (success, errMsg) in
+//                print("success:\(success), acountId: \(UdacityAPIClient.sharedInstance().sessionID)")
             }
+            
             
         }
         
