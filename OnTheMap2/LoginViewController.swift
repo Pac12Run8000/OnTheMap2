@@ -26,6 +26,10 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonPress(_ sender: Any) {
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "LocationsTabBarController") as! UITabBarController
         present(controller, animated: true, completion: nil)
+        
+        
+        
+        
     }
     
     
