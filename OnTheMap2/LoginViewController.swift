@@ -24,13 +24,66 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonPress(_ sender: Any) {
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: "LocationsTabBarController") as! UITabBarController
-        present(controller, animated: true, completion: nil)
+//        let controller = self.storyboard?.instantiateViewController(withIdentifier: "LocationsTabBarController") as! UITabBarController
+//        present(controller, animated: true, completion: nil)
+        guard let email = emailTextField.text, let password = passwordTextField.text else {
+            print("Either email or password fields are missing.")
+            return
+        }
         
+        if checkForValidEmailAndPassword(email: email, password: password) {
         
+            UdacityAPIClient.sharedInstance().authenticateUdacityUser("sosagrover1987@gmail.com", "getMyGraphicsNow67") { (success, errMsg) in
+            
+            }
+            
+        }
         
         
     }
+    
+    func checkForValidEmailAndPassword(email:String, password:String) -> Bool {
+        if (email.isEmpty || email == "" || !isEmailAddressValid(emailValue: email)) {
+            showAlert(messageText: "Please enter an email.")
+            return false
+        } else if (password.isEmpty || password == "") {
+            showAlert(messageText: "Please enter a password.")
+            return false
+        }
+        return true
+    }
+    
+    func showAlert(messageText:String) {
+        let alert = UIAlertController(title: "", message: messageText, preferredStyle: .alert)
+        
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (action) in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            
+            self.present(alert, animated: true , completion: nil)
+    }
+    
+    func isEmailAddressValid(emailValue:String) -> Bool {
+        var isValid = true
+        let regExpression = "[A-Z0-9a-z.-_]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}"
+        
+        do {
+            let regEx = try NSRegularExpression(pattern: regExpression)
+            let nsString = emailValue as NSString
+            let results = regEx.matches(in: emailValue, range: NSRange(location: 0, length: nsString.length))
+            
+            if (results.count == 0) {
+                isValid = false
+            }
+            
+        } catch let error as NSError {
+            print("invalid regex: \(error.localizedDescription)")
+            isValid = false
+        }
+        return isValid
+    }
+    
+    
     
     
     

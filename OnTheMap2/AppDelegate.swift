@@ -44,27 +44,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-extension AppDelegate {
-    
-    
-    
-    func getUdacityComponentsForAuth() -> URLComponents {
-        var component = URLComponents()
-        component.scheme = UdacityAPIClient.Constants.OTM.Udacity.ApiScheme
-        component.host = UdacityAPIClient.Constants.OTM.Udacity.ApiHost
-        component.path = UdacityAPIClient.Constants.OTM.Udacity.ApiPathSession
-        
-        return component
-    }
-    
-    func getParseComponentsForStudentLocations() -> URLComponents {
-        var component = URLComponents()
-        component.scheme = UdacityAPIClient.Constants.OTM.Parse.ApiScheme
-        component.host = UdacityAPIClient.Constants.OTM.Parse.ApiHost
-        component.path = UdacityAPIClient.Constants.OTM.Parse.ApiPathLocations
-        
-        return component
-    }
-
-}
 

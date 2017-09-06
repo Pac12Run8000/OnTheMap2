@@ -12,7 +12,7 @@ extension UdacityAPIClient {
 
  func authenticateUdacityUser(_ email:String, _ password:String, completionHandlerForAuthenticateUser: @escaping (_ success:Bool, _ error:String)->()) {
     
-    
+        
         taskForPOSTSession(email, password) { (data, error) in
         
         
