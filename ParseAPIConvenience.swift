@@ -32,6 +32,8 @@ extension ParseAPIClient {
             }
             
             ParseAPIClient.sharedInstance().currentUserLocation = Location.locationsFromResults(results: locationsDictionary)
+            
+           completionHandlerForGetUserLocation(true, "")
 
             
             

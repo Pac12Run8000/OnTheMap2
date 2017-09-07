@@ -12,6 +12,15 @@ class ParseAPIClient: NSObject {
     
     
     var currentUserLocation:[Location]? = nil
+    
+    // This is functionality for testing if the currentLocation has a value
+    
+//    if (self.currentUserLocation == nil) {
+//    print("No Location")
+//    } else {
+//    print("You have a location.")
+//    
+//    }
 
     var session = URLSession.shared
     
