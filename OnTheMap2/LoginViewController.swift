@@ -36,12 +36,14 @@ class LoginViewController: UIViewController {
                 
                     UdacityAPIClient.sharedInstance().getPublicUserData(completionForGettingPublicUser: { (success, errMsg) in
                     
-                        print("Name: \(String(describing: UdacityAPIClient.sharedInstance().firstName)) \(String(describing: UdacityAPIClient.sharedInstance().lastName))")
-                    
-                        performUIUpdatesOnMain {
-                            let controller = self.storyboard?.instantiateViewController(withIdentifier: "LocationsTabBarController")
-                            self.present(controller!, animated: true, completion: nil)
-                        }
+//                        ParseAPIClient.sharedInstance().getStudentLocation(completionHandlerForAuthenticateUser: { (success, errMsg) in
+//                            
+//                        })
+                        
+//                        performUIUpdatesOnMain {
+//                            let controller = self.storyboard?.instantiateViewController(withIdentifier: "LocationsTabBarController")
+//                            self.present(controller!, animated: true, completion: nil)
+//                        }
                     
                     })
 

@@ -20,13 +20,6 @@ extension UdacityAPIClient {
                 static let ApiPathSession = "/api/session"
                 static let ApiPathGetPublicUsers = "/api/users/"
             }
-            
-            struct Parse {
-                static let ApiScheme = "https"
-                static let ApiHost = "parse.udacity.com"
-                static let ApiPathLocations = "/parse/classes/StudentLocation"
-            }
-            
         }
         
         
@@ -61,13 +54,6 @@ extension UdacityAPIClient {
         return component
     }
     
-    func getParseComponentsForStudentLocations() -> URLComponents {
-        var component = URLComponents()
-        component.scheme = UdacityAPIClient.Constants.OTM.Parse.ApiScheme
-        component.host = UdacityAPIClient.Constants.OTM.Parse.ApiHost
-        component.path = UdacityAPIClient.Constants.OTM.Parse.ApiPathLocations
-        
-        return component
-    }
+    
 
 }
