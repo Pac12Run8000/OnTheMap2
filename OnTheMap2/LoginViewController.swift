@@ -36,14 +36,15 @@ class LoginViewController: UIViewController {
                 
                     UdacityAPIClient.sharedInstance().getPublicUserData(completionForGettingPublicUser: { (success, errMsg) in
                     
-//                        ParseAPIClient.sharedInstance().getStudentLocation(completionHandlerForAuthenticateUser: { (success, errMsg) in
-//                            
-//                        })
-                        
-//                        performUIUpdatesOnMain {
-//                            let controller = self.storyboard?.instantiateViewController(withIdentifier: "LocationsTabBarController")
-//                            self.present(controller!, animated: true, completion: nil)
-//                        }
+                        ParseAPIClient.sharedInstance().getStudentLocation(completionHandlerForGetUserLocation: { (success, errMsg) in
+                            
+                                performUIUpdatesOnMain {
+                                
+                                    let controller = self.storyboard?.instantiateViewController(withIdentifier: "LocationsTabBarController")
+                                    self.present(controller!, animated: true, completion: nil)
+                                }
+                            
+                        })
                     
                     })
 
@@ -51,10 +52,8 @@ class LoginViewController: UIViewController {
             
         }
         
-        
     }
     
-    //                print("success:\(success), sessionId: \(UdacityAPIClient.sharedInstance().sessionID), accountId:\(UdacityAPIClient.sharedInstance().accountID)")
     
     func checkForValidEmailAndPassword(email:String, password:String) -> Bool {
         if (email.isEmpty || email == "" || !isEmailAddressValid(emailValue: email)) {
