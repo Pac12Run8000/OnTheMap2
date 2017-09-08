@@ -38,7 +38,9 @@ class LoginViewController: UIViewController {
                     
                         ParseAPIClient.sharedInstance().getStudentLocation(completionHandlerForGetUserLocation: { (success, errMsg) in
                             
-                            
+                            ParseAPIClient.sharedInstance().getStudentLocations(completionHandlerForAuthenticateUser: { (success, errMsg) in
+                                
+                            })
                             
                             performUIUpdatesOnMain {
                                 

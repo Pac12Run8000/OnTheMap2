@@ -30,6 +30,18 @@ extension ParseAPIClient {
 
 extension ParseAPIClient {
     
+    func getParseComponentsStudentLocations() -> String? {
+        
+        var component = URLComponents()
+        component.scheme = ParseAPIClient.Constants.OTM.Parse.ApiScheme
+        component.host = ParseAPIClient.Constants.OTM.Parse.ApiHost
+        component.path = ParseAPIClient.Constants.OTM.Parse.ApiPathLocations
+        
+        
+//        return "https://parse.udacity.com/parse/classes/StudentLocation?limit=100"
+        return "\(String(describing: component.url!))?limit=100"
+    }
+    
     func getParseComponentsLocation() -> String? {
         var component = URLComponents()
         component.scheme = ParseAPIClient.Constants.OTM.Parse.ApiScheme

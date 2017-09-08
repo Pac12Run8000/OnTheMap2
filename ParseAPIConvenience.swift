@@ -47,9 +47,10 @@ extension ParseAPIClient {
     
     func getStudentLocations(completionHandlerForAuthenticateUser: @escaping (_ success:Bool, _ error:String)->()) {
         
-        taskForGETStudentLocations { (success, errmsg) in
-            
+       taskForGETStudentLocations { (data, err) in
+        print("data:\(data)")
         }
+        
         
         
     }
