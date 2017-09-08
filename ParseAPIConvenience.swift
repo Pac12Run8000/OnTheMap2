@@ -73,14 +73,16 @@ extension ParseAPIClient {
         }
     }
     
-    func addStudentLocation(params:[String:AnyObject]) {
-        taskToPOSTUserLocationData(params: params) { (success, err) in
+    func addStudentLocation() {
+        taskToPOSTUserLocationData() { (success, err) in
             
         }
     }
     
-    func updateStudentLocation(params:[String:AnyObject]) {
-        
+    func updateStudentLocation(completionForUpdate: @escaping (_ success:Bool?)->()) {
+        taskForPUTUserLocationData() { (success, err) in
+            completionForUpdate(true)
+        }
     }
     
 

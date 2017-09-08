@@ -15,6 +15,7 @@ class UdacityAPIClient: NSObject {
     
     var firstName:String? = nil
     var lastName:String? = nil
+    var objectId:String? = nil
     
     
     
