@@ -11,7 +11,7 @@ import UIKit
 
 extension ParseAPIClient {
 
-    func getStudentLocation(completionHandlerForGetUserLocation: @escaping (_ success:Bool, _ error:String)->()) {
+    func getStudentLocation(completionHandlerToGetUserLocation: @escaping (_ success:Bool, _ error:String)->()) {
         
         taskForGETStudentLocation { (data, err) in
             
@@ -20,35 +20,51 @@ extension ParseAPIClient {
                 parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
             } catch {
                 print("Couldn't parse Json")
-                completionHandlerForGetUserLocation(false, "Couldn't parse Json")
+                completionHandlerToGetUserLocation(false, "Couldn't parse Json")
                 return
             }
             
             guard let locationsDictionary = parsedResult["results"] as? [[String:AnyObject]] else {
                 print("No Key Value pair in the result set.")
                 
-                completionHandlerForGetUserLocation(false, "No Key Value pair in the result set.")
+                completionHandlerToGetUserLocation(false, "No Key Value pair in the result set.")
                 return
             }
             
             ParseAPIClient.sharedInstance().currentUserLocation = Location.locationsFromResults(results: locationsDictionary)
             
-           completionHandlerForGetUserLocation(true, "")
-
-            
-            
-            
-            
+            completionHandlerToGetUserLocation(true, "")
         }
         
         
     }
     
     
-    func getStudentLocations(completionHandlerForAuthenticateUser: @escaping (_ success:Bool, _ error:String)->()) {
+    func getStudentLocations(completionHandlerToGetLocations: @escaping (_ success:Bool, _ error:String)->()) {
         
-       taskForGETStudentLocations { (data, err) in
-        print("data:\(data)")
+        taskForGETStudentLocations { (data, err) in
+            
+            
+            let parsedResult: [String:AnyObject]!
+            do {
+                parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
+            } catch {
+//                completionHandler(nil, false, "Could not parse JSON Data:\(String(describing: data))")
+                completionHandlerToGetLocations(false, "Could not parse JSON Data:\(String(describing: data))")
+                return
+                
+            }
+            
+            guard let resultsDictionary = parsedResult["results"] as? [[String:AnyObject]] else {
+//                completionHandler(nil, false, "Can't find results dictionary.")
+                completionHandlerToGetLocations(false, "Can't find results dictionary.")
+                return
+            }
+            
+            ParseAPIClient.sharedInstance().allLocations = Location.locationsFromResults(results: resultsDictionary)
+            
+            completionHandlerToGetLocations(true, "")
+            
         }
         
         

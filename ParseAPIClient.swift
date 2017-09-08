@@ -13,6 +13,8 @@ class ParseAPIClient: NSObject {
     
     var currentUserLocation:[Location]? = nil
     
+    var allLocations:[Location]? = nil
+    
     // This is functionality for testing if the currentLocation has a value
     
 //    if (self.currentUserLocation == nil) {

@@ -42,9 +42,9 @@ extension ParseAPIClient {
         component.queryItems = [URLQueryItem]()
         component.queryItems?.append(queryItem)
         
-//        return "\(String(describing: component.url!))"
         return String(describing: component.url!)
     }
+    
     
     func getParseComponentsLocation() -> String? {
         var component = URLComponents()
@@ -53,18 +53,11 @@ extension ParseAPIClient {
         component.path = ParseAPIClient.Constants.OTM.Parse.ApiPathLocations
         
         var QueryStringComponent = URLComponents()
-      
             QueryStringComponent.path = "where={\"uniqueKey\":\"\(String(describing: UdacityAPIClient.sharedInstance().accountID!))\"}"
         
-        
         if let url = component.url, let qUrl = QueryStringComponent.url {
-            
             return "\(url)?\(qUrl)"
-        } else {
-            return nil
         }
-        
-       
+        return nil
     }
-
 }

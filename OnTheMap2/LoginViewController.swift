@@ -36,9 +36,9 @@ class LoginViewController: UIViewController {
                 
                     UdacityAPIClient.sharedInstance().getPublicUserData(completionForGettingPublicUser: { (success, errMsg) in
                     
-                        ParseAPIClient.sharedInstance().getStudentLocation(completionHandlerForGetUserLocation: { (success, errMsg) in
+                        ParseAPIClient.sharedInstance().getStudentLocation(completionHandlerToGetUserLocation: { (success, errMsg) in
                             
-                            ParseAPIClient.sharedInstance().getStudentLocations(completionHandlerForAuthenticateUser: { (success, errMsg) in
+                            ParseAPIClient.sharedInstance().getStudentLocations(completionHandlerToGetLocations: { (success, errMsg) in
                                 
                             })
                             
