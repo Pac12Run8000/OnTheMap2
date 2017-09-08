@@ -40,14 +40,13 @@ class LoginViewController: UIViewController {
                             
                             ParseAPIClient.sharedInstance().getStudentLocations(completionHandlerToGetLocations: { (success, errMsg) in
                                 
-                            })
-                            
-                            performUIUpdatesOnMain {
+                                performUIUpdatesOnMain {
+                                    
+                                    let controller = self.storyboard?.instantiateViewController(withIdentifier: "LocationsTabBarController")
+                                    self.present(controller!, animated: true, completion: nil)
+                                }
                                 
-                                let controller = self.storyboard?.instantiateViewController(withIdentifier: "LocationsTabBarController")
-                                self.present(controller!, animated: true, completion: nil)
-                            }
-                            
+                            })
                             
                         })
                     

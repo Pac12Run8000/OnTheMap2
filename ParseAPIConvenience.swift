@@ -49,14 +49,14 @@ extension ParseAPIClient {
             do {
                 parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
             } catch {
-//                completionHandler(nil, false, "Could not parse JSON Data:\(String(describing: data))")
+
                 completionHandlerToGetLocations(false, "Could not parse JSON Data:\(String(describing: data))")
                 return
                 
             }
             
             guard let resultsDictionary = parsedResult["results"] as? [[String:AnyObject]] else {
-//                completionHandler(nil, false, "Can't find results dictionary.")
+
                 completionHandlerToGetLocations(false, "Can't find results dictionary.")
                 return
             }
