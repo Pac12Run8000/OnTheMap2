@@ -30,6 +30,15 @@ extension ParseAPIClient {
 
 extension ParseAPIClient {
     
+    func getParseComponentsToAddStudentLocation() -> String? {
+        var component = URLComponents()
+        component.scheme = ParseAPIClient.Constants.OTM.Parse.ApiScheme
+        component.host = ParseAPIClient.Constants.OTM.Parse.ApiHost
+        component.path = ParseAPIClient.Constants.OTM.Parse.ApiPathLocations
+        
+        return String(describing: component.url!)
+    }
+    
     func getParseComponentsStudentLocations() -> String? {
         
         var component = URLComponents()
