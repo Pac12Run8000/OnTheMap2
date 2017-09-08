@@ -61,7 +61,12 @@ extension ParseAPIClient {
                 return
             }
             
-            ParseAPIClient.sharedInstance().allLocations = Location.locationsFromResults(results: resultsDictionary)
+            if (self.currentUserLocation != nil) {
+                ParseAPIClient.sharedInstance().allLocations = Location.locationsFromResults(results: resultsDictionary)
+                ParseAPIClient.sharedInstance().allLocations?.append(self.currentUserLocation![0])
+            } else {
+                ParseAPIClient.sharedInstance().allLocations = Location.locationsFromResults(results: resultsDictionary)
+            }
             
             completionHandlerToGetLocations(true, "")
             
