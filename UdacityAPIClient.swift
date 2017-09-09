@@ -54,8 +54,35 @@ class UdacityAPIClient: NSObject {
         task.resume()
     }
     
-    func taskForDELETESession(completionHanderForTaskForDELETESesion: (_ data: Data?, _ error: NSError?)->()) {
+    func taskForDELETESession(completionHanderForTaskForDELETESesion: @escaping (_ data: Data?,_ response:URLResponse?, _ error: NSError?)->()) {
         
+        let deleteRequest = NSMutableURLRequest(url: URL(string: String(describing: getUdacityComponentsForAuth()))!)
+        deleteRequest.httpMethod = "DELETE"
+        var xsrfCookie:HTTPCookie? = nil
+        let sharedCookieStorage = HTTPCookieStorage.shared
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        if let xsrfCookie = xsrfCookie {
+            deleteRequest.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: deleteRequest as URLRequest) { data, response, error in
+            if error != nil {
+                print("There was an error in the task.")
+                completionHanderForTaskForDELETESesion(data, response, error as NSError?)
+                return
+            }
+            
+            let range = Range(5..<data!.count)
+            let newData = data?.subdata(in: range) 
+            print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
+            
+            completionHanderForTaskForDELETESesion(data, response, nil)
+            
+        }
+        task.resume()
     }
     
     func taskForGETPublicUserData(_ accountID:String?, completionHandlerForGETPublicUserData: @escaping (_ data: Data?, _ error: NSError?)->()) {

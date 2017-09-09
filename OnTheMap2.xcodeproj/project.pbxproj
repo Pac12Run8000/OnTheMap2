@@ -20,6 +20,7 @@
 		096C910D1F60B8980035DD17 /* ParseAPIConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096C910C1F60B8980035DD17 /* ParseAPIConvenience.swift */; };
 		096C910F1F60B8B30035DD17 /* ParseAPIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096C910E1F60B8B30035DD17 /* ParseAPIConstants.swift */; };
 		096C91121F61CB870035DD17 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096C91111F61CB870035DD17 /* Location.swift */; };
+		096C91141F6410720035DD17 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096C91131F6410720035DD17 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		096C910C1F60B8980035DD17 /* ParseAPIConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAPIConvenience.swift; sourceTree = "<group>"; };
 		096C910E1F60B8B30035DD17 /* ParseAPIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAPIConstants.swift; sourceTree = "<group>"; };
 		096C91111F61CB870035DD17 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		096C91131F6410720035DD17 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 			children = (
 				096C90EC1F6009F50035DD17 /* AppDelegate.swift */,
 				096C90EE1F6009F50035DD17 /* LoginViewController.swift */,
+				096C91131F6410720035DD17 /* MapViewController.swift */,
 				096C90F01F6009F50035DD17 /* Main.storyboard */,
 				096C90F31F6009F50035DD17 /* Assets.xcassets */,
 				096C90F51F6009F50035DD17 /* LaunchScreen.storyboard */,
@@ -185,6 +188,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				096C91141F6410720035DD17 /* MapViewController.swift in Sources */,
 				096C91031F601E7F0035DD17 /* UdacityAPIConvenience.swift in Sources */,
 				096C91051F6020000035DD17 /* UdacityAPIConstants.swift in Sources */,
 				096C91121F61CB870035DD17 /* Location.swift in Sources */,
@@ -360,6 +364,7 @@
 				096C90FD1F6009F50035DD17 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

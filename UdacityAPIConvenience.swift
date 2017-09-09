@@ -56,6 +56,16 @@ extension UdacityAPIClient {
         }
     }
     
+    func logOutUdacityUser(completionHandlerForLogOut: @escaping (_ success:Bool?,_ error:String?)->()) {
+        UdacityAPIClient.sharedInstance().taskForDELETESession { (data, response, err) in
+            if (err == nil) {
+                completionHandlerForLogOut(true, nil)
+            } else {
+                completionHandlerForLogOut(false, err?.description)
+            }
+        }
+    }
+    
     func getPublicUserData(completionForGettingPublicUser: @escaping (_ success: Bool?, _ error:String?)->()) {
         
         guard let accountID = UdacityAPIClient.sharedInstance().accountID else {

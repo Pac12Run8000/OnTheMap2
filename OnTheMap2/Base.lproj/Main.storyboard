@@ -105,10 +105,10 @@
             </objects>
             <point key="canvasLocation" x="2760.8000000000002" y="505.99700149925042"/>
         </scene>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="j87-cm-cG2">
             <objects>
-                <viewController id="MBB-wb-ieF" sceneMemberID="viewController">
+                <viewController id="MBB-wb-ieF" customClass="MapViewController" customModule="OnTheMap2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uPy-zd-9VL"/>
                         <viewControllerLayoutGuide type="bottom" id="Pp8-xR-YpG"/>
@@ -116,9 +116,23 @@
                     <view key="view" contentMode="scaleToFill" id="p8e-Wc-fs5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QGy-Sy-4u3">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="QGy-Sy-4u3" secondAttribute="trailing" id="Lq9-ZV-t6z"/>
+                            <constraint firstItem="Pp8-xR-YpG" firstAttribute="top" secondItem="QGy-Sy-4u3" secondAttribute="bottom" id="RLK-vy-WTI"/>
+                            <constraint firstItem="QGy-Sy-4u3" firstAttribute="top" secondItem="uPy-zd-9VL" secondAttribute="bottom" id="mJl-Nq-m9K"/>
+                            <constraint firstItem="QGy-Sy-4u3" firstAttribute="leading" secondItem="p8e-Wc-fs5" secondAttribute="leading" id="rKD-x3-Sza"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vFR-57-pbG"/>
+                    <connections>
+                        <outlet property="mapView" destination="QGy-Sy-4u3" id="fHd-LI-Xua"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LHm-Zc-c8y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -65,6 +65,7 @@ class LoginViewController: UIViewController {
                                 performUIUpdatesOnMain {
                                     
                                     self.activityIndicator.stopAnimating()
+                                    self.setUIEnabled(true)
                                     let controller = self.storyboard?.instantiateViewController(withIdentifier: "LocationsTabBarController")
                                     self.present(controller!, animated: true, completion: nil)
                                 }
