@@ -9,21 +9,36 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpButton()
-        
-        
+        setUpActivityView()
        
     }
     
+    func setUpActivityView() {
+        self.activityIndicator.center = self.view.center
+        self.activityIndicator.hidesWhenStopped = true
+        self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        self.view.addSubview(self.activityIndicator)
+    }
+    
+    
+    
     @IBAction func loginButtonPress(_ sender: Any) {
+        
+        self.activityIndicator.startAnimating()
+        self.setUIEnabled(false)
 
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             print("Either email or password fields are missing.")
@@ -33,6 +48,13 @@ class LoginViewController: UIViewController {
         
         if checkForValidEmailAndPassword(email: email, password: password) {
             UdacityAPIClient.sharedInstance().authenticateUdacityUser(email, password) { (success, errMsg) in
+                if (!success) {
+                    performUIUpdatesOnMain {
+                        self.setUIEnabled(true)
+                        self.activityIndicator.stopAnimating()
+                        self.showAlert(messageText: errMsg)
+                    }
+                }
                 
                     UdacityAPIClient.sharedInstance().getPublicUserData(completionForGettingPublicUser: { (success, errMsg) in
                     
@@ -42,6 +64,7 @@ class LoginViewController: UIViewController {
                                 
                                 performUIUpdatesOnMain {
                                     
+                                    self.activityIndicator.stopAnimating()
                                     let controller = self.storyboard?.instantiateViewController(withIdentifier: "LocationsTabBarController")
                                     self.present(controller!, animated: true, completion: nil)
                                 }
@@ -52,6 +75,7 @@ class LoginViewController: UIViewController {
                     
                     })
             }
+       //this is the auth area
             
         }
         
@@ -60,9 +84,11 @@ class LoginViewController: UIViewController {
     
     func checkForValidEmailAndPassword(email:String, password:String) -> Bool {
         if (email.isEmpty || email == "" || !isEmailAddressValid(emailValue: email)) {
+            activityIndicator.stopAnimating()
             showAlert(messageText: "Please enter an email.")
             return false
         } else if (password.isEmpty || password == "") {
+            activityIndicator.stopAnimating()
             showAlert(messageText: "Please enter a password.")
             return false
         }
@@ -100,7 +126,16 @@ class LoginViewController: UIViewController {
     }
     
     
-    
+    func setUIEnabled(_ enabled:Bool) {
+        emailTextField.isEnabled = enabled
+        passwordTextField.isEnabled = enabled
+        loginButton.isEnabled = enabled
+        if enabled {
+            loginButton.alpha = 1.0
+        } else {
+            loginButton.alpha = 0.5
+        }
+    }
     
     
 
