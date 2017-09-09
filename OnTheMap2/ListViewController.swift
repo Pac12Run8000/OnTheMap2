@@ -8,7 +8,12 @@
 
 import UIKit
 
-class ListViewController: UIViewController {
+class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    
+    var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +23,9 @@ class ListViewController: UIViewController {
         let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshTapped))
         navigationItem.rightBarButtonItems = [addButton, refreshButton]
         navigationItem.leftBarButtonItems = [logoutButton]
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
     }
 
     func logoutButtonPress() {
@@ -33,6 +41,16 @@ class ListViewController: UIViewController {
             
         }
     
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! UITableViewCell
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
     }
     
     func addTapped() {

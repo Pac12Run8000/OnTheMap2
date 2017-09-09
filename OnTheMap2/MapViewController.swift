@@ -72,16 +72,16 @@ class MapViewController: UIViewController {
     func upDateLocationsForMap() {
         setUpViewsForActivityIndicator()
         activityIndicator.startAnimating()
-//        UdacityClient.retrieveStudentLocations { (locationObject, bVal, errMsg) in
+
         ParseAPIClient.sharedInstance().getStudentLocations { (success, errMsg) in
             
                 DispatchQueue.global(qos: .userInitiated).async { () -> Void in
                 
                 performUIUpdatesOnMain {
                     self.activityIndicator.stopAnimating()
-//                    self.pinLocationsOnMapView(locations: locationObject)
+
                     self.pinLocationsOnMapView(locations: ParseAPIClient.sharedInstance().allLocations)
-//                    print("allLocations:\(String(describing: ParseAPIClient.sharedInstance().allLocations))")
+
                     
                     for subview in self.view.subviews{
                         if subview.tag == 431431 {
