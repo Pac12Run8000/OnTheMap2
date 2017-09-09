@@ -86,10 +86,10 @@
             </objects>
             <point key="canvasLocation" x="-454" y="64"/>
         </scene>
-        <!--View Controller-->
+        <!--List View Controller-->
         <scene sceneID="Fv3-Db-Bbl">
             <objects>
-                <viewController id="Fhb-kt-Xdx" sceneMemberID="viewController">
+                <viewController id="Fhb-kt-Xdx" customClass="ListViewController" customModule="OnTheMap2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pTj-ra-eQ8"/>
                         <viewControllerLayoutGuide type="bottom" id="caY-NT-Emt"/>

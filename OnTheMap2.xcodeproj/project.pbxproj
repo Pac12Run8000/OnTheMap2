@@ -21,6 +21,7 @@
 		096C910F1F60B8B30035DD17 /* ParseAPIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096C910E1F60B8B30035DD17 /* ParseAPIConstants.swift */; };
 		096C91121F61CB870035DD17 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096C91111F61CB870035DD17 /* Location.swift */; };
 		096C91141F6410720035DD17 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096C91131F6410720035DD17 /* MapViewController.swift */; };
+		096C91161F641CF00035DD17 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096C91151F641CF00035DD17 /* ListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		096C910E1F60B8B30035DD17 /* ParseAPIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAPIConstants.swift; sourceTree = "<group>"; };
 		096C91111F61CB870035DD17 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		096C91131F6410720035DD17 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		096C91151F641CF00035DD17 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			children = (
 				096C90EC1F6009F50035DD17 /* AppDelegate.swift */,
 				096C90EE1F6009F50035DD17 /* LoginViewController.swift */,
+				096C91151F641CF00035DD17 /* ListViewController.swift */,
 				096C91131F6410720035DD17 /* MapViewController.swift */,
 				096C90F01F6009F50035DD17 /* Main.storyboard */,
 				096C90F31F6009F50035DD17 /* Assets.xcassets */,
@@ -190,6 +193,7 @@
 			files = (
 				096C91141F6410720035DD17 /* MapViewController.swift in Sources */,
 				096C91031F601E7F0035DD17 /* UdacityAPIConvenience.swift in Sources */,
+				096C91161F641CF00035DD17 /* ListViewController.swift in Sources */,
 				096C91051F6020000035DD17 /* UdacityAPIConstants.swift in Sources */,
 				096C91121F61CB870035DD17 /* Location.swift in Sources */,
 				096C90EF1F6009F50035DD17 /* LoginViewController.swift in Sources */,
