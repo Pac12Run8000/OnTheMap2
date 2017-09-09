@@ -9,13 +9,15 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, MKMapViewDelegate {
 
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.mapView.delegate = self
         
         let logoutButton = UIBarButtonItem(title: "logout", style: .plain, target: self, action: #selector(logoutButtonPress))
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
@@ -56,7 +58,7 @@ class MapViewController: UIViewController {
     }
     
     func refreshTapped() {
-    
+        self.upDateLocationsForMap()
     }
     
     func showAlert(messageText:String) {
@@ -72,23 +74,53 @@ class MapViewController: UIViewController {
     func upDateLocationsForMap() {
         setUpViewsForActivityIndicator()
         activityIndicator.startAnimating()
-
-        ParseAPIClient.sharedInstance().getStudentLocations { (success, errMsg) in
+        ParseAPIClient.sharedInstance().getStudentLocation { (success, errMsg) in
             
-                DispatchQueue.global(qos: .userInitiated).async { () -> Void in
+            ParseAPIClient.sharedInstance().getStudentLocations { (success, errMsg) in
+            
+                    DispatchQueue.global(qos: .userInitiated).async { () -> Void in
                 
-                performUIUpdatesOnMain {
-                    self.activityIndicator.stopAnimating()
+                        performUIUpdatesOnMain {
+                            self.activityIndicator.stopAnimating()
 
-                    self.pinLocationsOnMapView(locations: ParseAPIClient.sharedInstance().allLocations)
+                            self.pinLocationsOnMapView(locations: ParseAPIClient.sharedInstance().allLocations)
 
                     
-                    for subview in self.view.subviews{
-                        if subview.tag == 431431 {
-                            subview.removeFromSuperview()
+                            for subview in self.view.subviews{
+                                if subview.tag == 431431 {
+                                    subview.removeFromSuperview()
+                                }
+                            }
                         }
-                    }
                 }
+            }
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let reuseId = "pin"
+        
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+        
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.pinTintColor = .red
+            pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        else {
+            pinView!.annotation = annotation
+        }
+        
+        return pinView
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView {
+            let app = UIApplication.shared
+            if let toOpen = view.annotation?.subtitle! {
+                app.open(URL(string: toOpen)!, options: [:], completionHandler: nil)
             }
         }
     }
