@@ -60,9 +60,16 @@ extension ParseAPIClient {
                 completionHandlerToGetLocations(false, "Can't find results dictionary.")
                 return
             }
+
+            if (self.currentUserLocation != nil) {
+                var userLocations = Location.locationsFromResults(results: resultsDictionary)
+                let location = self.currentUserLocation?[0]
+                userLocations.append(location!)
+                ParseAPIClient.sharedInstance().allLocations = userLocations
+            } else {
+                 ParseAPIClient.sharedInstance().allLocations = Location.locationsFromResults(results: resultsDictionary)
+            }
             
-            
-            ParseAPIClient.sharedInstance().allLocations = Location.locationsFromResults(results: resultsDictionary)
             
             completionHandlerToGetLocations(true, "")
             

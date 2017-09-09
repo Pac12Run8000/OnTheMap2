@@ -11,6 +11,7 @@ import MapKit
 
 class MapViewController: UIViewController {
 
+    var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
@@ -21,8 +22,17 @@ class MapViewController: UIViewController {
         let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshTapped))
         navigationItem.rightBarButtonItems = [addButton, refreshButton]
         navigationItem.leftBarButtonItems = [logoutButton]
+        
+        self.activityIndicator.center = self.view.center
+        self.activityIndicator.hidesWhenStopped = true
+        self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
 
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        upDateLocationsForMap()
     }
     
     func logoutButtonPress() {
@@ -57,6 +67,86 @@ class MapViewController: UIViewController {
         }))
         
         self.present(alert, animated: true , completion: nil)
+    }
+    
+    func upDateLocationsForMap() {
+        setUpViewsForActivityIndicator()
+        activityIndicator.startAnimating()
+//        UdacityClient.retrieveStudentLocations { (locationObject, bVal, errMsg) in
+        ParseAPIClient.sharedInstance().getStudentLocations { (success, errMsg) in
+            
+                DispatchQueue.global(qos: .userInitiated).async { () -> Void in
+                
+                performUIUpdatesOnMain {
+                    self.activityIndicator.stopAnimating()
+//                    self.pinLocationsOnMapView(locations: locationObject)
+                    self.pinLocationsOnMapView(locations: ParseAPIClient.sharedInstance().allLocations)
+//                    print("allLocations:\(String(describing: ParseAPIClient.sharedInstance().allLocations))")
+                    
+                    for subview in self.view.subviews{
+                        if subview.tag == 431431 {
+                            subview.removeFromSuperview()
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func pinLocationsOnMapView(locations:[Location]?) {
+        
+        var annotations = [MKPointAnnotation]()
+        if let myLocations = locations {
+            for location in myLocations {
+                
+                let lat = CLLocationDegrees((location.latitude ?? 0.00 ))
+                
+                let long = CLLocationDegrees((location.longitude ?? 0.00 ))
+                
+                
+                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                
+                let annotation = MKPointAnnotation()
+                
+                
+                if let last = location.lastName, let first = location.firstName {
+                    annotation.title = "\(first) \(last)"
+                }
+                
+                
+                if let mediaURL = location.mediaURL {
+                    annotation.subtitle = mediaURL
+                }
+                
+                annotation.coordinate = coordinate
+                annotations.append(annotation)
+            }
+        }
+        self.mapView.removeAnnotations(self.mapView.annotations)
+        self.mapView.addAnnotations(annotations)
+    }
+    
+    func setUpViewsForActivityIndicator() {
+        let mainContainer: UIView = UIView(frame: self.view.frame)
+        mainContainer.center = self.view.center
+        mainContainer.backgroundColor = UIColor.gray
+        mainContainer.alpha = 0.5
+        mainContainer.tag = 431431
+        mainContainer.isUserInteractionEnabled = false
+        
+        let viewBackgroundLoading: UIView = UIView(frame: CGRect(x:0,y: 0,width: 80,height: 80))
+        viewBackgroundLoading.center = self.view.center
+        viewBackgroundLoading.backgroundColor = UIColor.purple
+        viewBackgroundLoading.alpha = 0.5
+        viewBackgroundLoading.clipsToBounds = true
+        viewBackgroundLoading.layer.cornerRadius = 15
+        
+        viewBackgroundLoading.addSubview(activityIndicator)
+        mainContainer.addSubview(viewBackgroundLoading)
+        
+        self.view.addSubview(mainContainer)
+        self.view.addSubview(self.activityIndicator)
+        
     }
 
     
