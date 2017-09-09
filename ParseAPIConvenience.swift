@@ -64,7 +64,6 @@ extension ParseAPIClient {
             
             ParseAPIClient.sharedInstance().allLocations = Location.locationsFromResults(results: resultsDictionary)
             
-            
             completionHandlerToGetLocations(true, "")
             
         }
