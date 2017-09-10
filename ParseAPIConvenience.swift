@@ -69,7 +69,9 @@ extension ParseAPIClient {
             } else {
                  ParseAPIClient.sharedInstance().allLocations = Location.locationsFromResults(results: resultsDictionary)
             }
-            
+                 ParseAPIClient.sharedInstance().allLocations?.sort(by: { (value1:Location, value2:Location) -> Bool in
+                                                            return value1.updatedAt! > value2.updatedAt!
+                 })
             
             completionHandlerToGetLocations(true, "")
             

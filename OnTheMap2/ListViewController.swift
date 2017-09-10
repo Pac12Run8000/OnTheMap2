@@ -50,7 +50,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     performUIUpdatesOnMain {
                         self.activityIndicator.stopAnimating()
                         
-                        print("locations:\(String(describing: ParseAPIClient.sharedInstance().allLocations))")
+//                        print("locations:\(String(describing: ParseAPIClient.sharedInstance().allLocations))")
                         
 //                        self.pinLocationsOnMapView(locations: ParseAPIClient.sharedInstance().allLocations)
                         
@@ -108,7 +108,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func refreshTapped() {
-    
+        upDateLocationsForTableView()
     }
     
     func showAlert(messageText:String) {
