@@ -102,6 +102,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         activityIndicator.startAnimating()
         ParseAPIClient.sharedInstance().getStudentLocation { (success, errMsg) in
             
+//            print("studentLocation:\(String(describing: ParseAPIClient.sharedInstance().currentUserLocation))")
+            
             ParseAPIClient.sharedInstance().getStudentLocations { (success, errMsg) in
             
                     DispatchQueue.global(qos: .userInitiated).async { () -> Void in

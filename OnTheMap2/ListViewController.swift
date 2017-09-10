@@ -43,16 +43,15 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         activityIndicator.startAnimating()
         ParseAPIClient.sharedInstance().getStudentLocation { (success, errMsg) in
             
+           
+            
             ParseAPIClient.sharedInstance().getStudentLocations { (success, errMsg) in
                 
                 DispatchQueue.global(qos: .userInitiated).async { () -> Void in
                     
                     performUIUpdatesOnMain {
+                        self.tableView.reloadData()
                         self.activityIndicator.stopAnimating()
-                        
-//                        print("locations:\(String(describing: ParseAPIClient.sharedInstance().allLocations))")
-                        
-//                        self.pinLocationsOnMapView(locations: ParseAPIClient.sharedInstance().allLocations)
                         
                         for subview in self.view.subviews{
                             if subview.tag == 431431 {
@@ -104,7 +103,33 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func addTapped() {
+        
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "addLocationNavigationController") as! UINavigationController
+        
+        if (ParseAPIClient.sharedInstance().currentUserLocation != nil) {
+            
+            if let fname = UdacityAPIClient.sharedInstance().firstName, let lname = UdacityAPIClient.sharedInstance().lastName {
+                showAlertIfStudentDictionary("User \"\(String(describing: fname)) \(String(describing: lname))\" has already posted a student location. Would you like to overwrite the location?", controller: controller)
+            }
+            
+        } else {
+            self.present(controller, animated: true, completion: nil)
+        }
     
+    }
+    
+    func showAlertIfStudentDictionary(_ messageText:String, controller: UINavigationController) {
+        let alert = UIAlertController(title: "", message: messageText, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Overwrite", style: .default, handler: { (action) in
+            self.present(controller, animated: true, completion: nil)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
+            print("Do nothing!!")
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     func refreshTapped() {
