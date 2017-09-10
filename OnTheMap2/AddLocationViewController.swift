@@ -29,11 +29,45 @@ class AddLocationViewController: UIViewController {
     
     
     @IBAction func findLocationButtonPressed(_ sender: Any) {
+        guard let location = locationTextField.text else {
+            return
+        }
+        guard let url = websiteTextField.text else {
+            return
+        }
+        
+        if (location.isEmpty || location == "") {
+            showAlert(messageText: "Please enter a location.")
+        } else if (url.isEmpty || url == "") {
+            showAlert(messageText: "Enter a url.")
+        } else if (!validateUrl(urlString: url as NSString)) {
+            showAlert(messageText: "The website url entered is not valid.")
+        } else {
+            let locationDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "LocationDetailViewController") as! LocationDetailViewController
+            locationDetailViewController.mapString = location
+            locationDetailViewController.mediaUrl = url
+            
+            navigationController?.pushViewController(locationDetailViewController, animated: true)
+            
+        }
         
     }
     
     func dismissButtonPressed() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func showAlert(messageText:String) {
+        let alert = UIAlertController(title: "", message: messageText, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true , completion: nil)
+    }
+    
+    func validateUrl (urlString: NSString) -> Bool {
+        let urlRegEx = "((?:http|https)://)?(?:www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)(?:[\\w\\d\\-./_]+)?)?"
+        return NSPredicate(format: "SELF MATCHES %@", urlRegEx).evaluate(with: urlString)
     }
 
    
