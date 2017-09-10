@@ -169,7 +169,19 @@ class LocationDetailViewController: UIViewController, MKMapViewDelegate {
             
             }
         } else {
-            print("This is a test.")
+            ParseAPIClient.sharedInstance().addStudentLocation(parameters!, completionForAdd: { (success, errMsg) in
+                
+                performUIUpdatesOnMain {
+                    if (success)! {
+                        self.activityIndicator.stopAnimating()
+                        self.setUIEnabled(true)
+                        self.dismiss(animated: true, completion: nil)
+                    } else {
+                        self.showAlert(messageText: errMsg!)
+                    }
+                }
+            
+            })
         
         }
         

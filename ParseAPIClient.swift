@@ -77,6 +77,7 @@ class ParseAPIClient: NSObject {
         
         let location = currentUserLocation
         let objectId = location?[0].objectId
+        
         let urlString = getParseComponentsToAddStudentLocation()! + "/" + objectId!
         let url = URL(string: urlString)
         let request = NSMutableURLRequest(url: url!)
@@ -102,13 +103,18 @@ class ParseAPIClient: NSObject {
     
 
     
-    func taskToPOSTUserLocationData(completionHandlerForPOSTUserLocation: @escaping (_ success:Bool, _ errorMsg:String?)->()) {
-        let request = NSMutableURLRequest(url: URL(string: getParseComponentsToAddStudentLocation()!)!)
+    func taskToPOSTUserLocationData(_ params:[String:AnyObject],completionHandlerForPOSTUserLocation: @escaping (_ success:Bool, _ errorMsg:String?)->()) {
+        
+        
+        let urlString = getParseComponentsToAddStudentLocation()!
+        let url = URL(string: urlString)
+        let request = NSMutableURLRequest(url: url!)
+        
         request.httpMethod = "POST"
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = "{\"uniqueKey\": \"10094933264\", \"firstName\": \"Norbert\", \"lastName\": \"Grover\",\"mapString\": \"monument CO\", \"mediaURL\": \"http://wired.com\",\"latitude\": 39.09158, \"longitude\": -104.8682}".data(using: String.Encoding.utf8)
+        request.httpBody = "{\"uniqueKey\": \"\(String(describing: params["uniquekey"]!))\", \"firstName\": \"\(String(describing: params["firstname"]!))\", \"lastName\": \"\(String(describing: params["lastname"]!))\",\"mapString\": \"\(String(describing: params["mapstring"]!))\", \"mediaURL\": \"\(String(describing: params["mediaUrl"]!))\",\"latitude\": \(String(describing: params["latitude"]!)), \"longitude\":\(String(describing: params["longitude"]!))}".data(using: String.Encoding.utf8)
         session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             if (error != nil) { // Handle error…
