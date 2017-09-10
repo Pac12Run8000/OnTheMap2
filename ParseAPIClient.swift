@@ -70,7 +70,11 @@ class ParseAPIClient: NSObject {
         task.resume()
     }
     
-    func taskForPUTUserLocationData(completionHandlerForPUTUserLocation:@escaping (_ success:Bool, _ errorMsg:String?)->()) {
+//    "{\"uniqueKey\": \"\(String(describing: params["uniquekey"]!))\", \"firstName\": \"\(String(describing: params["firstname"]!))\", \"lastName\": \"\(String(describing: params["lastname"]!))\",\"mapString\": \"\(String(describing: params["mapstring"]!))\", \"mediaURL\": \"\(String(describing: params["mediaUrl"]!))\",\"latitude\": \(String(describing: params["latitude"]!)), \"longitude\":\(String(describing: params["longitude"]!))}"
+    
+    func taskForPUTUserLocationData(_ params:[String:AnyObject], completionHandlerForPUTUserLocation:@escaping (_ success:Bool, _ errorMsg:String?)->()) {
+        
+        
         let location = currentUserLocation
         let objectId = location?[0].objectId
         let urlString = getParseComponentsToAddStudentLocation()! + "/" + objectId!
@@ -80,7 +84,7 @@ class ParseAPIClient: NSObject {
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = "{\"uniqueKey\": \"10094933264\", \"firstName\": \"Norbert\", \"lastName\": \"Grover\",\"mapString\": \"monument CO\", \"mediaURL\": \"http://apple.com\",\"latitude\": 39.09158, \"longitude\": -104.8682}".data(using: String.Encoding.utf8)
+        request.httpBody = "{\"uniqueKey\": \"\(String(describing: params["uniquekey"]!))\", \"firstName\": \"\(String(describing: params["firstname"]!))\", \"lastName\": \"\(String(describing: params["lastname"]!))\",\"mapString\": \"\(String(describing: params["mapstring"]!))\", \"mediaURL\": \"\(String(describing: params["mediaUrl"]!))\",\"latitude\": \(String(describing: params["latitude"]!)), \"longitude\":\(String(describing: params["longitude"]!))}".data(using: String.Encoding.utf8)
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             if ((error) != nil) { // Handle error…
@@ -95,6 +99,8 @@ class ParseAPIClient: NSObject {
         task.resume()
         
     }
+    
+
     
     func taskToPOSTUserLocationData(completionHandlerForPOSTUserLocation: @escaping (_ success:Bool, _ errorMsg:String?)->()) {
         let request = NSMutableURLRequest(url: URL(string: getParseComponentsToAddStudentLocation()!)!)

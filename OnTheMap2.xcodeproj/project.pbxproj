@@ -23,6 +23,7 @@
 		096C91141F6410720035DD17 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096C91131F6410720035DD17 /* MapViewController.swift */; };
 		096C91161F641CF00035DD17 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096C91151F641CF00035DD17 /* ListViewController.swift */; };
 		096C91181F64E7090035DD17 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096C91171F64E7090035DD17 /* AddLocationViewController.swift */; };
+		096C911A1F656F2A0035DD17 /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096C91191F656F2A0035DD17 /* LocationDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		096C91131F6410720035DD17 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		096C91151F641CF00035DD17 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		096C91171F64E7090035DD17 /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
+		096C91191F656F2A0035DD17 /* LocationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				096C90EE1F6009F50035DD17 /* LoginViewController.swift */,
 				096C91151F641CF00035DD17 /* ListViewController.swift */,
 				096C91131F6410720035DD17 /* MapViewController.swift */,
+				096C91191F656F2A0035DD17 /* LocationDetailViewController.swift */,
 				096C91171F64E7090035DD17 /* AddLocationViewController.swift */,
 				096C90F01F6009F50035DD17 /* Main.storyboard */,
 				096C90F31F6009F50035DD17 /* Assets.xcassets */,
@@ -196,6 +199,7 @@
 			files = (
 				096C91141F6410720035DD17 /* MapViewController.swift in Sources */,
 				096C91031F601E7F0035DD17 /* UdacityAPIConvenience.swift in Sources */,
+				096C911A1F656F2A0035DD17 /* LocationDetailViewController.swift in Sources */,
 				096C91161F641CF00035DD17 /* ListViewController.swift in Sources */,
 				096C91051F6020000035DD17 /* UdacityAPIConstants.swift in Sources */,
 				096C91121F61CB870035DD17 /* Location.swift in Sources */,

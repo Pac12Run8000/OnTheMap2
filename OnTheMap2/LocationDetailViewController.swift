@@ -120,9 +120,59 @@ class LocationDetailViewController: UIViewController, MKMapViewDelegate {
             finishButton.alpha = 0.5
         }
     }
-
+   
     @IBAction func finishButtonPressed(_ sender: Any) {
-        print("Test")
+        
+        guard let uniqueKey = UdacityAPIClient.sharedInstance().accountID else {
+            print("There is a problem with the unique key.")
+            return
+        }
+        
+        guard let firstname = UdacityAPIClient.sharedInstance().firstName else {
+            print("There is a problem with the firstname.")
+            return
+        }
+        
+        guard let lastname = UdacityAPIClient.sharedInstance().lastName else {
+            print("There is a problem with the lastname.")
+            return
+        }
+        
+        guard let mapstring = mapString  else {
+            print("There is a problem with the mapString value.")
+            return
+        }
+        
+        guard let mediaurl = mediaUrl else {
+            print("There is a problem with the mediaurl value.")
+            return
+        }
+        
+         let parameters = ["uniquekey": uniqueKey, "firstname": firstname, "lastname": lastname, "mapstring": mapstring, "mediaUrl": mediaurl, "latitude": coordinate.latitude, "longitude": coordinate.longitude] as? [String:AnyObject]
+        
+        self.activityIndicator.startAnimating()
+        self.setUIEnabled(false)
+        if (ParseAPIClient.sharedInstance().currentUserLocation != nil) {
+            
+            ParseAPIClient.sharedInstance().updateStudentLocation(parameters!) { (success, errMg) in
+            
+                performUIUpdatesOnMain {
+                
+                    if (success)! {
+                        self.activityIndicator.stopAnimating()
+                        self.setUIEnabled(true)
+                        self.dismiss(animated: true, completion: nil)
+                    } else {
+                        self.showAlert(messageText: errMg!)
+                    }
+                }
+            
+            }
+        } else {
+            print("This is a test.")
+        
+        }
+        
     }
     
 
