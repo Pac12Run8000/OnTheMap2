@@ -22,8 +22,8 @@ class ParseAPIClient: NSObject {
     func taskForGETStudentLocation(completionHandlerForTaskForPOSTSession: @escaping (_ data: Data?, _ error: NSError?)->()) {
         let url = URL(string: getParseComponentsLocation()!)
         let request = NSMutableURLRequest(url: url!)
-        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        request.addValue(ParseAPIClient.Constants.OTM.APIConnectionValues.AppIDValue, forHTTPHeaderField: ParseAPIClient.Constants.OTM.APIConnectionKeys.AppIDKey)
+        request.addValue(ParseAPIClient.Constants.OTM.APIConnectionValues.RestAPIValue, forHTTPHeaderField: ParseAPIClient.Constants.OTM.APIConnectionKeys.RestAPIKey)
         session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             if (error != nil) {
@@ -69,8 +69,6 @@ class ParseAPIClient: NSObject {
         }
         task.resume()
     }
-    
-//    "{\"uniqueKey\": \"\(String(describing: params["uniquekey"]!))\", \"firstName\": \"\(String(describing: params["firstname"]!))\", \"lastName\": \"\(String(describing: params["lastname"]!))\",\"mapString\": \"\(String(describing: params["mapstring"]!))\", \"mediaURL\": \"\(String(describing: params["mediaUrl"]!))\",\"latitude\": \(String(describing: params["latitude"]!)), \"longitude\":\(String(describing: params["longitude"]!))}"
     
     func taskForPUTUserLocationData(_ params:[String:AnyObject], completionHandlerForPUTUserLocation:@escaping (_ success:Bool, _ errorMsg:String?)->()) {
         

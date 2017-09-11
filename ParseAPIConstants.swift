@@ -21,6 +21,14 @@ extension ParseAPIClient {
                 static let ApiPathLocations = "/parse/classes/StudentLocation"
                 
             }
+            struct APIConnectionKeys {
+                static let AppIDKey = "X-Parse-Application-Id"
+                static let RestAPIKey = "X-Parse-REST-API-Key"
+            }
+            struct APIConnectionValues {
+                static let AppIDValue = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
+                static let RestAPIValue = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
+            }
         }
         
     }

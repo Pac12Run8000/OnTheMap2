@@ -12,6 +12,8 @@ extension UdacityAPIClient {
 
     struct Constants {
         
+        
+        
         struct OTM {
             
             struct Udacity {
@@ -20,6 +22,8 @@ extension UdacityAPIClient {
                 static let ApiPathSession = "/api/session"
                 static let ApiPathGetPublicUsers = "/api/users/"
             }
+            
+          
         }
         
         

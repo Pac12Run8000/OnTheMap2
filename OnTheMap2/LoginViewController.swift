@@ -87,10 +87,12 @@ class LoginViewController: UIViewController {
         if (email.isEmpty || email == "" || !isEmailAddressValid(emailValue: email)) {
             activityIndicator.stopAnimating()
             showAlert(messageText: "Please enter an email.")
+            setUIEnabled(true)
             return false
         } else if (password.isEmpty || password == "") {
             activityIndicator.stopAnimating()
             showAlert(messageText: "Please enter a password.")
+            setUIEnabled(true)
             return false
         }
         return true
