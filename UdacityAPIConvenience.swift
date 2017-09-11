@@ -24,24 +24,24 @@ extension UdacityAPIClient {
                 return
             }
             
-            guard let sessionDictionary = parsedResult["session"] as? [String:AnyObject] else {
+            guard let sessionDictionary = parsedResult[UdacityAPIClient.Constants.OTM.URLRequestKeys.Session] as? [String:AnyObject] else {
                 print("Can't find account! No Session Exists!")
                 completionHandlerForAuthenticateUser(false, "Can't find account! No Session Exists!")
                 return
             }
             
-            guard let sessionId = sessionDictionary["id"] as? String else {
+            guard let sessionId = sessionDictionary[UdacityAPIClient.Constants.OTM.URLRequestKeys.ID] as? String else {
                 print("No account ID.")
                 completionHandlerForAuthenticateUser(false, "No account ID.")
                 return
             }
             
-            guard let accountDictionary = parsedResult["account"] as? [String:AnyObject] else {
+            guard let accountDictionary = parsedResult[UdacityAPIClient.Constants.OTM.URLRequestKeys.Account] as? [String:AnyObject] else {
                 print("Can't find account!!")
                 completionHandlerForAuthenticateUser(false, "Can't find account!!")
                 return
             }
-            guard let keyId = accountDictionary["key"] as? String else {
+            guard let keyId = accountDictionary[UdacityAPIClient.Constants.OTM.URLRequestKeys.Key] as? String else {
                 print("No account ID.")
                 completionHandlerForAuthenticateUser(false, "No account ID.")
                 return
@@ -84,19 +84,19 @@ extension UdacityAPIClient {
                 return
             }
             
-            guard let userDictionary = parsedResult["user"] as? [String:AnyObject] else {
+            guard let userDictionary = parsedResult[UdacityAPIClient.Constants.OTM.URLRequestKeys.User] as? [String:AnyObject] else {
                 print("There is no user dictionary.")
                 completionForGettingPublicUser(false, "There is no user dictionary.")
                 return
             }
             
-            guard let firstName = userDictionary["first_name"] as? String else {
+            guard let firstName = userDictionary[UdacityAPIClient.Constants.OTM.URLRequestKeys.FirstName] as? String else {
                 print("Could not retrieve first name.")
                 completionForGettingPublicUser(false, "Could not retrieve first name.")
                 return
             }
             
-            guard let lastName = userDictionary["last_name"] as? String else {
+            guard let lastName = userDictionary[UdacityAPIClient.Constants.OTM.URLRequestKeys.LastName] as? String else {
                 print("Could not retrieve last name.")
                 completionForGettingPublicUser(false, "Could not retrieve last name.")
                 return

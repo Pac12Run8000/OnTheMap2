@@ -17,9 +17,7 @@ extension ParseAPIClient {
             static let Results = "results"
         }
         
-        struct JSONResponseValues {
-            
-        }
+        
         
         struct OTM {
             

@@ -30,8 +30,8 @@ class UdacityAPIClient: NSObject {
         
         let request = NSMutableURLRequest(url: URL(string: String(describing: getUdacityComponentsForAuth()))!)
         request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(UdacityAPIClient.Constants.OTM.APIConnectionValues.ApplicationJSON, forHTTPHeaderField: UdacityAPIClient.Constants.OTM.APIConnectionKeys.Accept)
+        request.addValue(UdacityAPIClient.Constants.OTM.APIConnectionValues.ApplicationJSON, forHTTPHeaderField: UdacityAPIClient.Constants.OTM.APIConnectionKeys.ContentType)
         request.httpBody = UdacityAPIClient.sharedInstance().OTMUrlFromLoginFields(username: email, password: password).data(using: String.Encoding.utf8)
         session = URLSession.shared
         

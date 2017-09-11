@@ -23,6 +23,27 @@ extension UdacityAPIClient {
                 static let ApiPathGetPublicUsers = "/api/users/"
             }
             
+            struct APIConnectionKeys {
+                
+                static let Accept = "Accept"
+                static let ContentType = "Content-Type"
+                
+            }
+            
+            struct APIConnectionValues {
+                static let ApplicationJSON = "application/json"
+            }
+            
+            struct URLRequestKeys {
+                static let Session = "session"
+                static let ID = "id"
+                static let Account = "account"
+                static let Key = "key"
+                static let User = "user"
+                static let FirstName = "first_name"
+                static let LastName = "last_name"
+            }
+            
           
         }
         
