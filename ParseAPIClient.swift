@@ -83,7 +83,7 @@ class ParseAPIClient: NSObject {
         request.addValue(ParseAPIClient.Constants.OTM.APIConnectionValues.AppIDValue, forHTTPHeaderField: ParseAPIClient.Constants.OTM.APIConnectionKeys.AppIDKey)
         request.addValue(ParseAPIClient.Constants.OTM.APIConnectionValues.RestAPIValue, forHTTPHeaderField: ParseAPIClient.Constants.OTM.APIConnectionKeys.RestAPIKey)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = "{\"uniqueKey\": \"\(String(describing: params["uniquekey"]!))\", \"firstName\": \"\(String(describing: params["firstname"]!))\", \"lastName\": \"\(String(describing: params["lastname"]!))\",\"mapString\": \"\(String(describing: params["mapstring"]!))\", \"mediaURL\": \"\(String(describing: params["mediaUrl"]!))\",\"latitude\": \(String(describing: params["latitude"]!)), \"longitude\":\(String(describing: params["longitude"]!))}".data(using: String.Encoding.utf8)
+        request.httpBody = "{\"uniqueKey\": \"\(String(describing: params[ParseAPIClient.Constants.OTM.URLRequestKeys.UniquKey]!))\", \"firstName\": \"\(String(describing: params[ParseAPIClient.Constants.OTM.URLRequestKeys.FirstName]!))\", \"lastName\": \"\(String(describing: params[ParseAPIClient.Constants.OTM.URLRequestKeys.LastName]!))\",\"mapString\": \"\(String(describing: params[ParseAPIClient.Constants.OTM.URLRequestKeys.MapString]!))\", \"mediaURL\": \"\(String(describing: params[ParseAPIClient.Constants.OTM.URLRequestKeys.MediaUrl]!))\",\"latitude\": \(String(describing: params[ParseAPIClient.Constants.OTM.URLRequestKeys.Latitude]!)), \"longitude\":\(String(describing: params[ParseAPIClient.Constants.OTM.URLRequestKeys.Longitude]!))}".data(using: String.Encoding.utf8)
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             if ((error) != nil) { // Handle error…
@@ -99,6 +99,11 @@ class ParseAPIClient: NSObject {
         
     }
     
+    func addValues(request:NSMutableURLRequest) -> NSMutableURLRequest {
+        request.addValue(ParseAPIClient.Constants.OTM.APIConnectionValues.AppIDValue, forHTTPHeaderField: ParseAPIClient.Constants.OTM.APIConnectionKeys.AppIDKey)
+        request.addValue(ParseAPIClient.Constants.OTM.APIConnectionValues.RestAPIValue, forHTTPHeaderField: ParseAPIClient.Constants.OTM.APIConnectionKeys.RestAPIKey)
+        return request
+    }
 
     
     func taskToPOSTUserLocationData(_ params:[String:AnyObject],completionHandlerForPOSTUserLocation: @escaping (_ success:Bool, _ errorMsg:String?)->()) {
@@ -107,12 +112,11 @@ class ParseAPIClient: NSObject {
         let urlString = getParseComponentsToAddStudentLocation()!
         let url = URL(string: urlString)
         let request = NSMutableURLRequest(url: url!)
-        
         request.httpMethod = "POST"
         request.addValue(ParseAPIClient.Constants.OTM.APIConnectionValues.AppIDValue, forHTTPHeaderField: ParseAPIClient.Constants.OTM.APIConnectionKeys.AppIDKey)
         request.addValue(ParseAPIClient.Constants.OTM.APIConnectionValues.RestAPIValue, forHTTPHeaderField: ParseAPIClient.Constants.OTM.APIConnectionKeys.RestAPIKey)
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = "{\"uniqueKey\": \"\(String(describing: params["uniquekey"]!))\", \"firstName\": \"\(String(describing: params["firstname"]!))\", \"lastName\": \"\(String(describing: params["lastname"]!))\",\"mapString\": \"\(String(describing: params["mapstring"]!))\", \"mediaURL\": \"\(String(describing: params["mediaUrl"]!))\",\"latitude\": \(String(describing: params["latitude"]!)), \"longitude\":\(String(describing: params["longitude"]!))}".data(using: String.Encoding.utf8)
+        request.addValue(ParseAPIClient.Constants.OTM.APIConnectionValues.ContentTypeValue, forHTTPHeaderField: ParseAPIClient.Constants.OTM.APIConnectionKeys.ContentTypeKey)
+        request.httpBody = "{\"uniqueKey\": \"\(String(describing: params[ParseAPIClient.Constants.OTM.URLRequestKeys.UniquKey]!))\", \"firstName\": \"\(String(describing: params[ParseAPIClient.Constants.OTM.URLRequestKeys.FirstName]!))\", \"lastName\": \"\(String(describing: params[ParseAPIClient.Constants.OTM.URLRequestKeys.LastName]!))\",\"mapString\": \"\(String(describing: params[ParseAPIClient.Constants.OTM.URLRequestKeys.MapString]!))\", \"mediaURL\": \"\(String(describing: params[ParseAPIClient.Constants.OTM.URLRequestKeys.MediaUrl]!))\",\"latitude\": \(String(describing: params[ParseAPIClient.Constants.OTM.URLRequestKeys.Latitude]!)), \"longitude\":\(String(describing: params[ParseAPIClient.Constants.OTM.URLRequestKeys.Longitude]!))}".data(using: String.Encoding.utf8)
         session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             if (error != nil) { // Handle error…

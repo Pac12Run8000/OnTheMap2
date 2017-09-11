@@ -24,11 +24,26 @@ extension ParseAPIClient {
             struct APIConnectionKeys {
                 static let AppIDKey = "X-Parse-Application-Id"
                 static let RestAPIKey = "X-Parse-REST-API-Key"
+                static let ContentTypeKey = "Content-Type"
             }
             struct APIConnectionValues {
                 static let AppIDValue = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
                 static let RestAPIValue = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
+                static let ContentTypeValue = "application/json"
             }
+            struct URLRequestKeys {
+                static let UniquKey = "uniquekey"
+                static let FirstName = "firstname"
+                static let LastName = "lastname"
+                static let MapString = "mapstring"
+                static let MediaUrl = "mediaUrl"
+                static let Latitude = "latitude"
+                static let Longitude = "longitude"
+            }
+            struct URLRequestValues {
+                
+            }
+
         }
         
     }
