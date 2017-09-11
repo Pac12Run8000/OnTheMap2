@@ -38,7 +38,8 @@ class UdacityAPIClient: NSObject {
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             if (error != nil) {
                 completionHandlerForTaskForPOSTSession(nil, error! as NSError)
-                print("An error occured during request.")
+                
+                print("An error occured during request. \(String(describing: response?.description))")
                 return
             }
             

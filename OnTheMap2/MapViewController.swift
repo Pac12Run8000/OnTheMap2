@@ -38,10 +38,18 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func logoutButtonPress() {
-
+        setUpViewsForActivityIndicator()
+        activityIndicator.startAnimating()
         UdacityAPIClient.sharedInstance().logOutUdacityUser { (success, errMsg) in
             
             performUIUpdatesOnMain {
+                self.activityIndicator.stopAnimating()
+                for subview in self.view.subviews{
+                    if subview.tag == 431431 {
+                        subview.removeFromSuperview()
+                    }
+                }
+                
                 if (success!) {
                     self.dismiss(animated: true, completion: nil)
                 } else {
