@@ -13,6 +13,14 @@ extension ParseAPIClient {
     
     struct Constants {
         
+        struct JSONResponseKeys {
+            static let Results = "results"
+        }
+        
+        struct JSONResponseValues {
+            
+        }
+        
         struct OTM {
             
             struct Parse {

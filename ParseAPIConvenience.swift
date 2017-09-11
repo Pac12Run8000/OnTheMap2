@@ -24,7 +24,7 @@ extension ParseAPIClient {
                 return
             }
             
-            guard let locationsDictionary = parsedResult["results"] as? [[String:AnyObject]] else {
+            guard let locationsDictionary = parsedResult[ParseAPIClient.Constants.JSONResponseKeys.Results] as? [[String:AnyObject]] else {
                 print("No Key Value pair in the result set.")
                 
                 completionHandlerToGetUserLocation(false, "No Key Value pair in the result set.")
@@ -55,7 +55,7 @@ extension ParseAPIClient {
                 
             }
             
-            guard let resultsDictionary = parsedResult["results"] as? [[String:AnyObject]] else {
+            guard let resultsDictionary = parsedResult[ParseAPIClient.Constants.JSONResponseKeys.Results] as? [[String:AnyObject]] else {
 
                 completionHandlerToGetLocations(false, "Can't find results dictionary.")
                 return
