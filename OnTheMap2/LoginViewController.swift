@@ -48,6 +48,7 @@ class LoginViewController: UIViewController {
         
         if checkForValidEmailAndPassword(email: email, password: password) {
             UdacityAPIClient.sharedInstance().authenticateUdacityUser(email, password) { (success, errMsg) in
+                print("success:\(success)")
                 if (!success) {
                     performUIUpdatesOnMain {
                         self.setUIEnabled(true)

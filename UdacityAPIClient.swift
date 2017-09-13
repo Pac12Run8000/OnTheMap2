@@ -25,7 +25,7 @@ class UdacityAPIClient: NSObject {
     
     
     
-    func taskForPOSTSession(_ email:String, _ password:String, completionHandlerForTaskForPOSTSession: @escaping (_ data: Data?, _ error: NSError?)->()) {
+    func taskForPOSTSession(_ email:String, _ password:String, completionHandlerForTaskForPOSTSession: @escaping (_ data: Data?, _ response:URLResponse?,_ error: String?)->()) {
         
         
         let request = NSMutableURLRequest(url: URL(string: String(describing: getUdacityComponentsForAuth()))!)
@@ -37,9 +37,7 @@ class UdacityAPIClient: NSObject {
         
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             if (error != nil) {
-                completionHandlerForTaskForPOSTSession(nil, error! as NSError)
-                
-                print("An error occured during request. \(String(describing: response?.description))")
+                completionHandlerForTaskForPOSTSession(nil, response, "\(String(describing: (error as! NSError).localizedDescription))")
                 return
             }
             
@@ -48,7 +46,7 @@ class UdacityAPIClient: NSObject {
                 
                 
                 print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
-                completionHandlerForTaskForPOSTSession(newData, nil)
+                completionHandlerForTaskForPOSTSession(newData, nil, nil)
                 
             
         }
