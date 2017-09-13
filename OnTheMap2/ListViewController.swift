@@ -42,10 +42,34 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         setUpViewsForActivityIndicator()
         activityIndicator.startAnimating()
         ParseAPIClient.sharedInstance().getStudentLocation { (success, errMsg) in
-            
+            if (!success) {
+                performUIUpdatesOnMain {
+                    self.showAlert(messageText: errMsg)
+                    self.activityIndicator.stopAnimating()
+                    
+                    for subview in self.view.subviews{
+                        if subview.tag == 431431 {
+                            subview.removeFromSuperview()
+                        }
+                    }
+                }
+            }
            
             
             ParseAPIClient.sharedInstance().getStudentLocations { (success, errMsg) in
+                
+                if (!success) {
+                    performUIUpdatesOnMain {
+                        self.showAlert(messageText: errMsg)
+                        self.activityIndicator.stopAnimating()
+                        
+                        for subview in self.view.subviews{
+                            if subview.tag == 431431 {
+                                subview.removeFromSuperview()
+                            }
+                        }
+                    }
+                }
                 
                 DispatchQueue.global(qos: .userInitiated).async { () -> Void in
                     

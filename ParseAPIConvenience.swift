@@ -48,7 +48,10 @@ extension ParseAPIClient {
     func getStudentLocations(completionHandlerToGetLocations: @escaping (_ success:Bool, _ error:String)->()) {
         
         taskForGETStudentLocations { (data, err) in
-            
+            if (err != nil) {
+                completionHandlerToGetLocations(false, (err?.localizedDescription)!)
+                return
+            }
             
             let parsedResult: [String:AnyObject]!
             do {
