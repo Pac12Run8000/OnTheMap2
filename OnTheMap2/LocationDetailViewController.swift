@@ -83,6 +83,7 @@ class LocationDetailViewController: UIViewController, MKMapViewDelegate {
     
     
     func setUpViewsForActivityIndicator() {
+        
         let mainContainer: UIView = UIView(frame: self.view.frame)
         mainContainer.center = self.view.center
         mainContainer.backgroundColor = UIColor.gray
@@ -122,7 +123,7 @@ class LocationDetailViewController: UIViewController, MKMapViewDelegate {
     }
    
     @IBAction func finishButtonPressed(_ sender: Any) {
-        
+        setUpViewsForActivityIndicator()
         guard let uniqueKey = UdacityAPIClient.sharedInstance().accountID else {
             print("There is a problem with the unique key.")
             return
