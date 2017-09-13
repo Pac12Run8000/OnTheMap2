@@ -44,7 +44,7 @@ class LocationDetailViewController: UIViewController, MKMapViewDelegate {
         geocoder.geocodeAddressString(mapString) { (placemarks, error) in
             
             if ((error) != nil) {
-                self.showAlert(messageText: "Please enter a Valid URL.")
+                self.showAlert(messageText: "Location cannot be found.")
                 self.activityIndicator.stopAnimating()
             }
             
