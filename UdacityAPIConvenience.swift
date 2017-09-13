@@ -68,7 +68,7 @@ extension UdacityAPIClient {
             if (err == nil) {
                 completionHandlerForLogOut(true, nil)
             } else {
-                completionHandlerForLogOut(false, err?.description)
+                completionHandlerForLogOut(false, err?.localizedDescription)
             }
         }
     }

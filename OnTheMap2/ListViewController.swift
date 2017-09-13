@@ -79,7 +79,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 if (success!) {
                     self.dismiss(animated: true, completion: nil)
                 } else {
-                    self.showAlert(messageText: "An error occurred during logout.")
+                    self.showAlert(messageText: errMsg!)
                 }
             }
             

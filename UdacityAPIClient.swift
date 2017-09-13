@@ -36,6 +36,7 @@ class UdacityAPIClient: NSObject {
         session = URLSession.shared
         
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
+            
             if (error != nil) {
                 completionHandlerForTaskForPOSTSession(nil, response, "\(String(describing: (error as! NSError).localizedDescription))")
                 return
