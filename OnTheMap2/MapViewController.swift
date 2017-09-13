@@ -109,7 +109,18 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         setUpViewsForActivityIndicator()
         activityIndicator.startAnimating()
         ParseAPIClient.sharedInstance().getStudentLocation { (success, errMsg) in
-            
+            if (!success) {
+                performUIUpdatesOnMain {
+                    self.showAlert(messageText: errMsg)
+                    self.activityIndicator.stopAnimating()
+                    for subview in self.view.subviews{
+                        if subview.tag == 431431 {
+                            subview.removeFromSuperview()
+                        }
+                    }
+                }
+            }
+           
 
             ParseAPIClient.sharedInstance().getStudentLocations { (success, errMsg) in
             

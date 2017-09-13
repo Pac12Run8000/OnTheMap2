@@ -15,6 +15,11 @@ extension ParseAPIClient {
         
         taskForGETStudentLocation { (data, err) in
             
+            if (err != nil) {
+                completionHandlerToGetUserLocation(false, (err?.localizedDescription)!)
+                return
+            }
+            
             let parsedResult: [String:AnyObject]!
             do {
                 parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
