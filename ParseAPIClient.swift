@@ -9,12 +9,6 @@
 import UIKit
 
 class ParseAPIClient: NSObject {
-    
-    
-    var currentUserLocation:[Location]? = nil
-    
-    var allLocations:[Location]? = nil
-    
 
     var session = URLSession.shared
     

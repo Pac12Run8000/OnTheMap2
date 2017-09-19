@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+
+
+
 struct Location {
     let createdAt: String?
     var firstName: String?
@@ -45,9 +48,15 @@ struct Location {
     }
 }
 
-extension Location: Equatable {}
+extension Location: Equatable {
 
-func ==(lhs: Location, rhs: Location) -> Bool {
-    return lhs.objectId == rhs.objectId
+    static func ==(lhs: Location, rhs: Location) -> Bool {
+        return lhs.objectId == rhs.objectId
+    }
 }
+
+var currentUserLocation:[Location]? = nil
+
+var allLocations:[Location]? = nil
+
 

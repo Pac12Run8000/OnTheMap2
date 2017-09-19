@@ -65,7 +65,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "addLocationNavigationController") as! UINavigationController
         
-        if (ParseAPIClient.sharedInstance().currentUserLocation != nil) {
+        if (currentUserLocation != nil) {
             
             if let fname = UdacityAPIClient.sharedInstance().firstName, let lname = UdacityAPIClient.sharedInstance().lastName {
                showAlertIfStudentDictionary("User \"\(String(describing: fname)) \(String(describing: lname))\" has already posted a student location. Would you like to overwrite the location?", controller: controller)
@@ -140,7 +140,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                         performUIUpdatesOnMain {
                             self.activityIndicator.stopAnimating()
 
-                            self.pinLocationsOnMapView(locations: ParseAPIClient.sharedInstance().allLocations)
+                            self.pinLocationsOnMapView(locations: allLocations)
 
                     
                             for subview in self.view.subviews{

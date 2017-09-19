@@ -36,7 +36,7 @@ extension ParseAPIClient {
                 return
             }
             
-            ParseAPIClient.sharedInstance().currentUserLocation = Location.locationsFromResults(results: locationsDictionary)
+            currentUserLocation = Location.locationsFromResults(results: locationsDictionary)
             
             completionHandlerToGetUserLocation(true, "")
         }
@@ -69,15 +69,15 @@ extension ParseAPIClient {
                 return
             }
 
-            if (self.currentUserLocation != nil) {
+            if (currentUserLocation != nil) {
                 var userLocations = Location.locationsFromResults(results: resultsDictionary)
-                let location = self.currentUserLocation?[0]
+                let location = currentUserLocation?[0]
                 userLocations.append(location!)
-                ParseAPIClient.sharedInstance().allLocations = userLocations
+                allLocations = userLocations
             } else {
-                 ParseAPIClient.sharedInstance().allLocations = Location.locationsFromResults(results: resultsDictionary)
+                 allLocations = Location.locationsFromResults(results: resultsDictionary)
             }
-                 ParseAPIClient.sharedInstance().allLocations?.sort(by: { (value1:Location, value2:Location) -> Bool in
+                 allLocations?.sort(by: { (value1:Location, value2:Location) -> Bool in
                                                             return value1.updatedAt! > value2.updatedAt!
                  })
             

@@ -153,7 +153,7 @@ class LocationDetailViewController: UIViewController, MKMapViewDelegate {
         
         self.activityIndicator.startAnimating()
         self.setUIEnabled(false)
-        if (ParseAPIClient.sharedInstance().currentUserLocation != nil) {
+        if (currentUserLocation != nil) {
             
             ParseAPIClient.sharedInstance().updateStudentLocation(parameters!) { (success, errMg) in
             

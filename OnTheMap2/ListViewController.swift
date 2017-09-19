@@ -138,7 +138,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "addLocationNavigationController") as! UINavigationController
         
-        if (ParseAPIClient.sharedInstance().currentUserLocation != nil) {
+        if (currentUserLocation != nil) {
             
             if let fname = UdacityAPIClient.sharedInstance().firstName, let lname = UdacityAPIClient.sharedInstance().lastName {
                 showAlertIfStudentDictionary("User \"\(String(describing: fname)) \(String(describing: lname))\" has already posted a student location. Would you like to overwrite the location?", controller: controller)
@@ -184,15 +184,15 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
 extension ListViewController {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (ParseAPIClient.sharedInstance().allLocations?.count)!
+        return (allLocations?.count)!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let allLocations = ParseAPIClient.sharedInstance().allLocations
+        let AllLocations = allLocations
         
         let cellReuseIdentifier = "cell"
         
-        let location = allLocations?[(indexPath as NSIndexPath).row]
+        let location = AllLocations?[(indexPath as NSIndexPath).row]
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
         let firstname = location?.firstName ?? "[No first name]"
         let lastname = location?.lastName ?? "[No last name]"
@@ -210,9 +210,9 @@ extension ListViewController {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let allLocations = ParseAPIClient.sharedInstance().allLocations
+        let AllLocations = allLocations
         
-        let location = allLocations?[(indexPath as NSIndexPath).row]
+        let location = AllLocations?[(indexPath as NSIndexPath).row]
         if (location?.mediaURL == nil) {
             self.showAlert(messageText: "There url value is nil.")
         } else {
