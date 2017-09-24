@@ -170,6 +170,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             pinView!.annotation = annotation
         }
         
+        pinView?.animatesDrop = true
+        
         return pinView
     }
     
