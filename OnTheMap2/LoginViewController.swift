@@ -160,8 +160,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
 
 
-extension LoginViewController {
 
+
+
+
+
+
+extension LoginViewController {
+// MARK: keyboard movement functionality now works properly
     func unsubscribeToKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
