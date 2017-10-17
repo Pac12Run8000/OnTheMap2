@@ -81,6 +81,7 @@
 		096C90EB1F6009F50035DD17 /* OnTheMap2 */ = {
 			isa = PBXGroup;
 			children = (
+				096C91081F60839A0035DD17 /* GCDBlackBox.swift */,
 				096C90EC1F6009F50035DD17 /* AppDelegate.swift */,
 				096C90EE1F6009F50035DD17 /* LoginViewController.swift */,
 				096C91151F641CF00035DD17 /* ListViewController.swift */,
@@ -91,7 +92,6 @@
 				096C90F31F6009F50035DD17 /* Assets.xcassets */,
 				096C90F51F6009F50035DD17 /* LaunchScreen.storyboard */,
 				096C90F81F6009F50035DD17 /* Info.plist */,
-				096C91081F60839A0035DD17 /* GCDBlackBox.swift */,
 			);
 			path = OnTheMap2;
 			sourceTree = "<group>";
