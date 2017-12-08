@@ -14,5 +14,6 @@ How to use On The Map
 2. Once you login there should be a map display the different locations of Udacity members along with a popup url.
 <img src="https://user-images.githubusercontent.com/12214205/33788339-74d3330c-dc26-11e7-9f64-ba1938b74f64.png" height="250">
 3. To add a location click on the "+" button and a screen with 2 TextFields should be presented. <img src="https://user-images.githubusercontent.com/12214205/33788432-07738efa-dc27-11e7-9024-3f694532722d.png" height="250">
+4. 
 
 
