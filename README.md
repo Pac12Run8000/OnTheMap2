@@ -21,3 +21,4 @@ How to use On The Map
 6. Once you click on the pin callout view, you will go to the URL the you designated earlier.
 <img src="https://user-images.githubusercontent.com/12214205/33790145-933265fa-dc32-11e7-8f02-eb345c3795d5.png" height="250">
 7. Up in the left hand side of the application you can return to the main TabBarController. At this point you can select (at the bottom) the Map or the List controller to view your Link and location. Clicking on the cell again takes you to a URL.
+<img src="https://user-images.githubusercontent.com/12214205/33790959-27598cfc-dc3a-11e7-8e27-aad0f91e5fe1.png" height="250">
