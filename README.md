@@ -19,3 +19,4 @@ How to use On The Map
 5. Once you finish the map should be displayed again and you should be able to on your pin located in the location that you designated. You should also see the other Udacity users who have a location on the map.
 <img src="https://user-images.githubusercontent.com/12214205/33789952-439fab66-dc31-11e7-8c89-3443cd5973c0.png" height="250">
 6. Once you click on the pin callout view, you will go to the URL the you designated earlier.
+<img src="https://user-images.githubusercontent.com/12214205/33790145-933265fa-dc32-11e7-8f02-eb345c3795d5.png" height="250">
