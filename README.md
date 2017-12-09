@@ -22,3 +22,8 @@ How to use On The Map
 <img src="https://user-images.githubusercontent.com/12214205/33790145-933265fa-dc32-11e7-8f02-eb345c3795d5.png" height="250">
 7. Up in the left hand side of the application you can return to the main TabBarController. At this point you can select (at the bottom) the Map or the List controller to view your Link and location. Clicking on the cell again takes you to a URL.
 <img src="https://user-images.githubusercontent.com/12214205/33790959-27598cfc-dc3a-11e7-8e27-aad0f91e5fe1.png" height="250">
+8. Moreover, reguardless of which tab you select, you can allways press the "+" button and add or update your location and url information.
+
+License
+------
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
